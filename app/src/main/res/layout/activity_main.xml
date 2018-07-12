@@ -8,13 +8,14 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:gravity="center">
-        <WebView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="30dp"
-            android:id="@+id/main_web_view">
-        </WebView>
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/logo"
+            android:id="@+id/main_image_view">
+        </ImageView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
