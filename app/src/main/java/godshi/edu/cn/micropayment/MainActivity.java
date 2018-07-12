@@ -7,7 +7,7 @@ import android.os.Bundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import godshi.edu.cn.micropayment.activity.LoginActivity;
+import godshi.edu.cn.micropayment.activity.user.LoginActivity;
 
 public class MainActivity extends Activity
 {

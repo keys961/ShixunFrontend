@@ -1,8 +1,7 @@
-package godshi.edu.cn.micropayment.activity;
+package godshi.edu.cn.micropayment.activity.user;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -13,18 +12,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.apache.commons.lang3.StringUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
+import cz.msebera.android.httpclient.util.EncodingUtils;
 import godshi.edu.cn.micropayment.R;
 import godshi.edu.cn.micropayment.util.ConnectionUtils;
 import godshi.edu.cn.micropayment.util.HttpUtils;
 
 public class LoginActivity extends Activity
 {
+    private static final String ACCOUNT_FILE_NAME = "account.json";
 
     private ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
@@ -36,6 +45,7 @@ public class LoginActivity extends Activity
         {
             super.handleMessage(msg);
             Bundle bundle = msg.getData();
+            //TODO: at here to finish this activity if succeed
             Log.i("status", Boolean.toString(bundle.getBoolean(HttpUtils.HttpMessageKey.STATUS)));
             Log.i("message", bundle.getString(HttpUtils.HttpMessageKey.MESSAGE));
         }
@@ -64,8 +74,60 @@ public class LoginActivity extends Activity
         bindRegisterAction();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        //TODO
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     private boolean restoreAndLogin()
     {
+        JSONObject jsonObject = null;
+        try(FileInputStream inputStream = openFileInput(ACCOUNT_FILE_NAME))
+        {
+            byte[] buffer = new byte[inputStream.available()];
+            try
+            {
+                inputStream.read(buffer);
+                String account = EncodingUtils.getString(buffer, "utf-8");
+                jsonObject = new JSONObject(account);
+            }
+            catch(JSONException e)
+            {
+                Log.e("error", e.getMessage());
+                return false;
+            }
+        }
+        catch (IOException e)
+        {
+            Log.e("error", e.getMessage());
+            return false;
+        }
+
+        if (jsonObject != JSONObject.NULL)
+        {
+            try {
+                String username = jsonObject.getString("username");
+                String password = jsonObject.getString("password");
+                if (StringUtils.isBlank(username) || StringUtils.isBlank(password))
+                    return false;
+
+                EditText editTextUsername = (EditText)findViewById(R.id.edit_login_username);
+                editTextUsername.setText(username);
+                EditText editTextPassword = (EditText)findViewById(R.id.edit_login_password);
+                editTextPassword.setText(password);
+
+                Future<Boolean> result = threadPool.submit(new LoginCallable(username, password));
+                return result.get(21000, TimeUnit.MILLISECONDS);
+            }
+            catch (Exception e)
+            {
+                Log.i("error ", e.getMessage());
+                return false;
+            }
+        }
+
         return false;
     }
 
@@ -76,7 +138,7 @@ public class LoginActivity extends Activity
             {
                 String username = ((EditText)findViewById(R.id.edit_login_username)).getText().toString();
                 String password = ((EditText)findViewById(R.id.edit_login_password)).getText().toString();
-                threadPool.submit(new LoginRunnable(username, password));
+                threadPool.submit(new LoginCallable(username, password));
             }
         );
     }
@@ -87,12 +149,13 @@ public class LoginActivity extends Activity
         registerButton.setOnClickListener(((View view) ->
                 {
                     Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                    //startActivityForResult(intent, 2);
+                    //TODO:
+                    startActivityForResult(intent, 2);
                 })
         );
     }
 
-    private class LoginRunnable implements Runnable
+    private class LoginCallable implements Callable<Boolean>
     {
         private String username;
 
@@ -100,20 +163,23 @@ public class LoginActivity extends Activity
 
         private static final String URL = "http://www.zju.edu.cn";
 
-        public LoginRunnable(String username, String password)
+        public LoginCallable(String username, String password)
         {
             this.username = username;
             this.password = password;
         }
 
         @Override
-        public void run()
+        public Boolean call()
         {
             Map<String, String> params = new HashMap<>();
             params.put("username", username);
             params.put("password", password);
-            Message message = HttpUtils.doGet(URL, params);
+            Message message = HttpUtils.doPost(URL, params);
+            message.getData().putString("username", username);
+            message.getData().putString("password", password);
             loginHandler.sendMessage(message);
+            return message.getData().getBoolean(HttpUtils.HttpMessageKey.STATUS);
         }
     }
 

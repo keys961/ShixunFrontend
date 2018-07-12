@@ -1,4 +1,4 @@
-package godshi.edu.cn.micropayment.activity;
+package godshi.edu.cn.micropayment.activity.user;
 
 import android.os.Bundle;
 import android.app.Activity;

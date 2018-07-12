@@ -31,4 +31,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
     implementation group: 'cz.msebera.android' , name: 'httpclient', version: '4.4.1.1'
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation group: 'commons-io', name: 'commons-io', version: '2.4'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+
 }

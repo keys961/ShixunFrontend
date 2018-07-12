@@ -19,11 +19,13 @@ import java.util.Map;
 import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.HttpStatus;
+import cz.msebera.android.httpclient.client.config.RequestConfig;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import cz.msebera.android.httpclient.params.BasicHttpParams;
+import cz.msebera.android.httpclient.params.CoreConnectionPNames;
 import cz.msebera.android.httpclient.params.HttpParams;
 import cz.msebera.android.httpclient.util.EntityUtils;
 
@@ -35,6 +37,12 @@ public class HttpUtils
 
         public static final String MESSAGE = "message";
     }
+
+    private static final RequestConfig REQUEST_CONFIG = RequestConfig.custom()
+            .setConnectionRequestTimeout(10000) // 10s connection timeout
+            .setSocketTimeout(10500) // 10.5s transfer timeout
+            .build();
+
 
     public static Message doPost(String url, Map<String, String> params)
     {
@@ -54,6 +62,7 @@ public class HttpUtils
             entity = new StringEntity(jsonObject.toString(), "utf-8");
             post.setHeader("Content-Type", "application/json; charset=utf-8");
             post.setEntity(entity);
+            post.setConfig(REQUEST_CONFIG);
             response = client.execute(post);
             if(response == null || response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
             {
@@ -102,6 +111,7 @@ public class HttpUtils
             for(String key : params.keySet())
                 httpParams.setParameter(key, params.get(key));
             get.setParams(httpParams);
+            get.setConfig(REQUEST_CONFIG);
             response = client.execute(get);
             if(response == null || response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
             {
