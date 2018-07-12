@@ -6,4 +6,7 @@
     <string name="register">注册</string>
     <string name="username">用户名</string>
     <string name="password">密码&#160;&#160;&#160;&#160;</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="confirm_register">确认注册</string>
 </resources>

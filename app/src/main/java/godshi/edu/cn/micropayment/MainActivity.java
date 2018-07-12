@@ -12,7 +12,7 @@ import godshi.edu.cn.micropayment.activity.LoginActivity;
 public class MainActivity extends Activity
 {
 
-    private static int TIME_DELAY = 1500;
+    private static final int TIME_DELAY = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
