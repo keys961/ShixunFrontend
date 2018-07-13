@@ -30,7 +30,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
-    implementation group: 'cz.msebera.android' , name: 'httpclient', version: '4.4.1.1'
+    implementation group: 'cz.msebera.android', name: 'httpclient', version: '4.4.1.1'
     // https://mvnrepository.com/artifact/commons-io/commons-io
     implementation group: 'commons-io', name: 'commons-io', version: '2.4'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3

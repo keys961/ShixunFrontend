@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
@@ -28,8 +29,12 @@ import java.util.concurrent.TimeUnit;
 
 import cz.msebera.android.httpclient.util.EncodingUtils;
 import godshi.edu.cn.micropayment.R;
+import godshi.edu.cn.micropayment.activity.payment.IndexActivity;
+import godshi.edu.cn.micropayment.constant.ApiConstant;
+import godshi.edu.cn.micropayment.constant.MessageKeyConstant;
 import godshi.edu.cn.micropayment.util.ConnectionUtils;
 import godshi.edu.cn.micropayment.util.HttpUtils;
+import godshi.edu.cn.micropayment.util.LoadingUtils;
 
 public class LoginActivity extends Activity
 {
@@ -38,16 +43,52 @@ public class LoginActivity extends Activity
     private ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
     @SuppressLint("HandlerLeak")
-    private static Handler loginHandler = new Handler()
+    private Handler loginHandler = new Handler()
     {
         @Override
         public void handleMessage(Message msg)
         {
             super.handleMessage(msg);
+
+            String toastMsg = "";
             Bundle bundle = msg.getData();
-            //TODO: at here to finish this activity if succeed
-            Log.i("status", Boolean.toString(bundle.getBoolean(HttpUtils.HttpMessageKey.STATUS)));
-            Log.i("message", bundle.getString(HttpUtils.HttpMessageKey.MESSAGE));
+
+            boolean status = bundle.getBoolean(MessageKeyConstant.STATUS);
+            String message = bundle.getString(MessageKeyConstant.BODY);
+            Log.i("status", Boolean.toString(status));
+            Log.i("message", message);
+            LoadingUtils.cancel();
+            if(!status)
+            {
+                // Login failed
+                toastMsg = "登陆失败！\n失败消息: " + (message == null ? "未知" : message);
+                showToastMessage(toastMsg);
+                return;
+            }
+            JSONObject body;
+            try
+            {
+                body = new JSONObject(message);
+                if(body.getBoolean("status"))
+                {
+                    toastMsg = "登陆成功！";
+                    showToastMessage(toastMsg);
+                    Intent intent = new Intent(LoginActivity.this, IndexActivity.class);
+                    intent.putExtra("username", bundle.getString("username"));
+                    intent.putExtra("password", bundle.getString("password"));
+                    startActivity(intent);
+                    LoginActivity.this.finish();
+                    return;
+                }
+            }
+            catch (JSONException e)
+            {
+                Log.e("error", e.getMessage());
+            }
+            // false
+            // Login failed
+            toastMsg = "登陆失败! 用户名或密码错误！";
+            showToastMessage(toastMsg);
         }
     };
 
@@ -67,7 +108,7 @@ public class LoginActivity extends Activity
             return;
         }
 
-        if(!restoreAndLogin())
+        if(restoreAndLogin())
             return;
 
         bindLoginAction();
@@ -77,8 +118,21 @@ public class LoginActivity extends Activity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        //TODO
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1)
+        {
+            if(resultCode == 1)
+                Log.i("register back", "succeed!");
+            else if(resultCode == 2)
+                Log.i("register back", "failed!");
+            else
+                Log.i("register back", "do nothing");
+        }
+    }
+
+    private void showToastMessage(String message)
+    {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private boolean restoreAndLogin()
@@ -113,11 +167,11 @@ public class LoginActivity extends Activity
                 if (StringUtils.isBlank(username) || StringUtils.isBlank(password))
                     return false;
 
-                EditText editTextUsername = (EditText)findViewById(R.id.edit_login_username);
+                EditText editTextUsername = findViewById(R.id.edit_login_username);
                 editTextUsername.setText(username);
-                EditText editTextPassword = (EditText)findViewById(R.id.edit_login_password);
+                EditText editTextPassword = findViewById(R.id.edit_login_password);
                 editTextPassword.setText(password);
-
+                LoadingUtils.show(LoginActivity.this);
                 Future<Boolean> result = threadPool.submit(new LoginCallable(username, password));
                 return result.get(21000, TimeUnit.MILLISECONDS);
             }
@@ -138,6 +192,7 @@ public class LoginActivity extends Activity
             {
                 String username = ((EditText)findViewById(R.id.edit_login_username)).getText().toString();
                 String password = ((EditText)findViewById(R.id.edit_login_password)).getText().toString();
+                LoadingUtils.show(LoginActivity.this);
                 threadPool.submit(new LoginCallable(username, password));
             }
         );
@@ -149,8 +204,7 @@ public class LoginActivity extends Activity
         registerButton.setOnClickListener(((View view) ->
                 {
                     Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                    //TODO:
-                    startActivityForResult(intent, 2);
+                    startActivityForResult(intent, 1); // Request code: 1
                 })
         );
     }
@@ -160,8 +214,6 @@ public class LoginActivity extends Activity
         private String username;
 
         private String password;
-
-        private static final String URL = "http://www.zju.edu.cn";
 
         public LoginCallable(String username, String password)
         {
@@ -175,12 +227,11 @@ public class LoginActivity extends Activity
             Map<String, String> params = new HashMap<>();
             params.put("username", username);
             params.put("password", password);
-            Message message = HttpUtils.doPost(URL, params);
+            Message message = HttpUtils.doPost(ApiConstant.API_LOGIN, params);
             message.getData().putString("username", username);
             message.getData().putString("password", password);
             loginHandler.sendMessage(message);
-            return message.getData().getBoolean(HttpUtils.HttpMessageKey.STATUS);
+            return message.getData().getBoolean(MessageKeyConstant.STATUS);
         }
     }
-
 }

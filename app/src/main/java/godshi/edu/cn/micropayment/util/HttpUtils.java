@@ -28,16 +28,10 @@ import cz.msebera.android.httpclient.params.BasicHttpParams;
 import cz.msebera.android.httpclient.params.CoreConnectionPNames;
 import cz.msebera.android.httpclient.params.HttpParams;
 import cz.msebera.android.httpclient.util.EntityUtils;
+import godshi.edu.cn.micropayment.constant.MessageKeyConstant;
 
 public class HttpUtils
 {
-    public static class HttpMessageKey
-    {
-        public static final String STATUS = "status";
-
-        public static final String MESSAGE = "message";
-    }
-
     private static final RequestConfig REQUEST_CONFIG = RequestConfig.custom()
             .setConnectionRequestTimeout(10000) // 10s connection timeout
             .setSocketTimeout(10500) // 10.5s transfer timeout
@@ -66,26 +60,26 @@ public class HttpUtils
             response = client.execute(post);
             if(response == null || response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
             {
-                Log.e("error", "Login failed");
-                bundle.putBoolean(HttpMessageKey.STATUS, false);
+                Log.e("error", "request failed");
+                bundle.putBoolean(MessageKeyConstant.STATUS, false);
             }
             else
             {
-                Log.i("info", "Login succeed");
-                bundle.putBoolean(HttpMessageKey.STATUS, true);
+                Log.i("info", "request succeed");
+                bundle.putBoolean(MessageKeyConstant.STATUS, true);
             }
 
             if(response != null && response.getEntity() != null)
-                bundle.putString(HttpMessageKey.MESSAGE, EntityUtils.toString(response.getEntity(),
+                bundle.putString(MessageKeyConstant.BODY, EntityUtils.toString(response.getEntity(),
                         "utf-8"));
             else
-                bundle.putString(HttpMessageKey.MESSAGE, "");
+                bundle.putString(MessageKeyConstant.BODY, "");
         }
         catch (JSONException | IOException e)
         {
             Log.e("error", e.getMessage());
-            bundle.putBoolean(HttpMessageKey.STATUS, false);
-            bundle.putString(HttpMessageKey.MESSAGE, e.getMessage());
+            bundle.putBoolean(MessageKeyConstant.STATUS, false);
+            bundle.putString(MessageKeyConstant.BODY, e.getMessage());
         }
         finally
         {
@@ -115,25 +109,25 @@ public class HttpUtils
             response = client.execute(get);
             if(response == null || response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
             {
-                Log.e("error", "Login failed");
-                bundle.putBoolean(HttpMessageKey.STATUS, false);
+                Log.e("error", "request failed");
+                bundle.putBoolean(MessageKeyConstant.STATUS, false);
             }
             else
             {
-                Log.i("info", "Login succeed");
-                bundle.putBoolean(HttpMessageKey.STATUS, true);
+                Log.i("info", "request succeed");
+                bundle.putBoolean(MessageKeyConstant.STATUS, true);
             }
             if(response != null && response.getEntity() != null)
-                bundle.putString(HttpMessageKey.MESSAGE, EntityUtils.toString(response.getEntity(),
+                bundle.putString(MessageKeyConstant.BODY, EntityUtils.toString(response.getEntity(),
                     "utf-8"));
             else
-                bundle.putString(HttpMessageKey.MESSAGE, "");
+                bundle.putString(MessageKeyConstant.BODY, "");
         }
         catch (IOException e)
         {
             Log.e("error", e.getMessage());
-            bundle.putBoolean(HttpMessageKey.STATUS, false);
-            bundle.putString(HttpMessageKey.MESSAGE, e.getMessage());
+            bundle.putBoolean(MessageKeyConstant.STATUS, false);
+            bundle.putString(MessageKeyConstant.BODY, e.getMessage());
         }
         finally
         {

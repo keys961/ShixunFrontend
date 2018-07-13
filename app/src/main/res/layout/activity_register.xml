@@ -24,17 +24,18 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/text_register_username"
+                android:layout_width="66dp"
                 android:layout_height="wrap_content"
                 android:text="@string/username"
-                android:textSize="16sp"
-                android:id="@+id/text_register_username" />
+                android:textSize="16sp" />
 
             <EditText
+                android:id="@+id/edit_register_username"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/edit_register_username"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:hint="用户名必须由英文、数字组成，长度在6~20之间" />
         </LinearLayout>
 
         <LinearLayout
@@ -44,17 +45,18 @@
             android:layout_gravity="center_horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/text_register_password1"
+                android:layout_width="66dp"
                 android:layout_height="wrap_content"
                 android:text="@string/password"
-                android:textSize="16sp"
-                android:id="@+id/text_register_password1" />
+                android:textSize="16sp" />
 
             <EditText
+                android:id="@+id/edit_register_password1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/edit_register_password1"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:hint="密码长度在6~20之间" />
         </LinearLayout>
 
         <LinearLayout
@@ -64,31 +66,32 @@
             android:layout_gravity="center_horizontal">
 
             <TextView
+                android:id="@+id/text_register_password2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/confirm_password"
-                android:textSize="16sp"
-                android:id="@+id/text_register_password2" />
+                android:textSize="16sp" />
 
             <EditText
+                android:id="@+id/edit_register_password2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/edit_register_password2"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:hint="两次密码输入必须相同" />
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_register_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/confirm_register"
-            android:id="@+id/btn_register_register"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
-            android:background="#0099ff"
-            android:textColor="#ffffff"
-            android:enabled="true"
+            android:background="@android:color/holo_green_dark"
             android:clickable="true"
-            android:focusable="true" />
+            android:enabled="true"
+            android:focusable="true"
+            android:text="@string/confirm_register"
+            android:textColor="#ffffff" />
 
     </LinearLayout>
 </LinearLayout>
