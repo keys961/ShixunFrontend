@@ -24,9 +24,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.LoginActivity"
-            android:label="@string/title_activity_login">
-        </activity>
+            android:name=".activity.user.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".activity.user.RegisterActivity"
+            android:label="@string/title_activity_register" />
+        <activity
+            android:name=".activity.payment.IndexActivity"
+            android:label="@string/title_activity_index" />
+        <activity
+            android:name=".activity.payment.NFCPayActivity"
+            android:label="@string/title_activity_nfcpay" />
+        <activity
+            android:name=".activity.payment.GoodListActivity"
+            android:label="@string/title_activity_good_list" />
+        <activity
+            android:name=".activity.payment.CardManagementActivity"
+            android:label="@string/title_activity_card_management" />
+        <activity
+            android:name=".activity.user.SettingActivity"
+            android:label="@string/title_activity_setting" />
+        <activity
+            android:name=".activity.user.ChangePwdActivity"
+            android:label="@string/title_activity_change_pwd"></activity>
     </application>
 
 </manifest>

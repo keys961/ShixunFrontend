@@ -4,15 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import godshi.edu.cn.micropayment.activity.LoginActivity;
+import godshi.edu.cn.micropayment.activity.user.LoginActivity;
 
 public class MainActivity extends Activity
 {
 
-    private static int TIME_DELAY = 1500;
+    private static final int TIME_DELAY = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

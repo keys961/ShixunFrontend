@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#cfffffff" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:text="@string/app_name"
+                android:textSize="28sp"
+                android:textColor="#ffffff"
+                android:id="@+id/text_index_header"
+                android:background="#ff0099ff"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#ff0099ff">
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="125dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.45"
+                android:id="@+id/btn_index_nfc_pay">
+
+                <ImageView
+                    android:layout_height="80dp"
+                    android:layout_width="80dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/nfc_pay"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="@string/nfc_pay"
+                    android:textSize="20sp"
+                    android:textColor="#FF0099FF"
+                    android:layout_gravity="center_horizontal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.45"
+                android:id="@+id/btn_index_get_good_list">
+
+                <ImageView
+                    android:layout_height="80dp"
+                    android:layout_width="80dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/goodlist"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="@string/get_good_list"
+                    android:textSize="20sp"
+                    android:textColor="#FF0099FF"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#ff0099ff">
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#aaaaaaff">
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="1"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:id="@+id/btn_index_manage_card">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/manage_card"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:layout_weight="0.22" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#aaaaaaff">
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#aaaaaaff">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="1"
+            android:id="@+id/btn_index_setting"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/settings"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:layout_weight="0.22" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#aaaaaaff">
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
