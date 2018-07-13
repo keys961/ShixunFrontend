@@ -47,6 +47,8 @@ public class ChangePwdActivity extends Activity
 
             boolean status = bundle.getBoolean(MessageKeyConstant.STATUS);
             String message = bundle.getString(MessageKeyConstant.BODY);
+            String username = bundle.getString("username");
+            String password = bundle.getString("password");
             Log.i("status", Boolean.toString(status));
             Log.i("message", message);
             LoadingUtils.cancel();
@@ -65,6 +67,7 @@ public class ChangePwdActivity extends Activity
                 {
                     toastMsg = "修改成功！";
                     showToastMessage(toastMsg);
+                    updateAccountInfo(username, password);
                     ChangePwdActivity.this.finish();
                     return;
                 }
@@ -163,6 +166,8 @@ public class ChangePwdActivity extends Activity
             params.put("newPassword", newPassword);
             params.put("newPassword2", newPassword2);
             Message message = HttpUtils.doPost(ApiConstant.API_CHANGE_PASSWORD, params);
+            message.getData().putString("username", username);
+            message.getData().putString("password", newPassword);
             changePwdHandler.sendMessage(message);
         }
     }
