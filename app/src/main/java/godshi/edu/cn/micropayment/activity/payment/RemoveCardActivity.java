@@ -5,17 +5,14 @@ import android.app.Activity;
 
 import godshi.edu.cn.micropayment.R;
 
-/**
- * NFCPayActivity -> ConfirmPayActivity (auto generate order)
- */
-public class NFCPayActivity extends Activity
+public class RemoveCardActivity extends Activity
 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nfcpay);
+        setContentView(R.layout.activity_remove_card);
     }
 
 }

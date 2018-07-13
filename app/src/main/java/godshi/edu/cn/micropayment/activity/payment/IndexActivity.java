@@ -81,6 +81,7 @@ public class IndexActivity extends Activity
             String password = extraBundle.getString("password");
             user.setUsername(username);
             user.setPassword(password);
+            user.setName(username);
             try (FileOutputStream outputStream = openFileOutput(ACCOUNT_FILE_NAME, MODE_PRIVATE))
             {
                 JSONObject object = new JSONObject();

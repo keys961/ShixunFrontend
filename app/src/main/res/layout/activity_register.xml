@@ -56,6 +56,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:inputType="textPassword"
                 android:hint="密码长度在6~20之间" />
         </LinearLayout>
 
@@ -77,6 +78,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:inputType="textPassword"
                 android:hint="两次密码输入必须相同" />
         </LinearLayout>
 

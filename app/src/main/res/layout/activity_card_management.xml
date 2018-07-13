@@ -11,8 +11,8 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="45dp"
-            android:text="管理银行卡"
-            android:textSize="22dp"
+            android:text="@string/manage_card"
+            android:textSize="22sp"
             android:textColor="#ffffff"
             android:id="@+id/text_index_header"
             android:background="#ff0099ff"
@@ -35,7 +35,7 @@
             android:weightSum="1"
             android:id="@+id/linearLayout">
             <Button
-                android:id="@+id/btn_addCard"
+                android:id="@+id/btn_cardmanagement_addcard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -43,16 +43,16 @@
                 android:text="@string/add_new_card"
                 android:layout_weight="0.40"
                 android:textColor="#ffffffff"
-                android:textSize="18dp"/>
+                android:textSize="18sp"/>
         </LinearLayout>
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@id/android:list"
+            android:id="@+id/list_cardmanagement_cards"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_above="@+id/linearLayout" />
+            android:layout_above="@+id/linearLayout"/>
     </RelativeLayout>
 
 </LinearLayout>

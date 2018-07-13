@@ -63,7 +63,7 @@ public class ChangePwdActivity extends Activity
             try
             {
                 body = new JSONObject(message);
-                if(body.getBoolean("status"))
+                if("success".equals(body.getString("status")))
                 {
                     toastMsg = "修改成功！";
                     showToastMessage(toastMsg);

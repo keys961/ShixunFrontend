@@ -2,30 +2,30 @@ package godshi.edu.cn.micropayment.entity;
 
 public class Card
 {
-    private String bank;
+    private String bankName;
 
-    private String cardId;
+    private String cardNumber;
 
     private String password;
 
-    public String getBank()
+    public String getBankName()
     {
-        return bank;
+        return bankName;
     }
 
-    public void setBank(String bank)
+    public void setBankName(String bankName)
     {
-        this.bank = bank;
+        this.bankName = bankName;
     }
 
-    public String getCardId()
+    public String getCardNumber()
     {
-        return cardId;
+        return cardNumber;
     }
 
-    public void setCardId(String cardId)
+    public void setCardNumber(String cardNumber)
     {
-        this.cardId = cardId;
+        this.cardNumber = cardNumber;
     }
 
     public String getPassword()
