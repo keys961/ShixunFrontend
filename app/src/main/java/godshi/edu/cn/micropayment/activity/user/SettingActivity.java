@@ -61,7 +61,7 @@ public class SettingActivity extends Activity
 
         linearLayout.setOnClickListener(view ->
         {
-            Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
+            Intent intent = new Intent(SettingActivity.this, ChangePwdActivity.class);
             intent.putExtra("username", user.getUsername());
             intent.putExtra("password", user.getPassword());
             startActivity(intent);
