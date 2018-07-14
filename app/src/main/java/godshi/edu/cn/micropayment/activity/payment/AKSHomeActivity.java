@@ -185,7 +185,6 @@ public class AKSHomeActivity extends Activity
                 new int[]{R.id.product_item_img, R.id.product_item_title,
                     R.id.product_item_price, R.id.product_item_type, R.id.product_item_id});
         ListView listView = findViewById(R.id.list_akshome_userfavor);
-        //TODO
         listView.setAdapter(adapter);
         Log.i("list count", String.valueOf(listView.getAdapter().getCount()));
         Log.i("avaliablility", String.valueOf(listView.getAdapter().areAllItemsEnabled()));
