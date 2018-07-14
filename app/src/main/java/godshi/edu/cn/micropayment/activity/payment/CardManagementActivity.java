@@ -45,7 +45,6 @@ public class CardManagementActivity extends Activity
         public void handleMessage(Message msg)
         {
             super.handleMessage(msg);
-            super.handleMessage(msg);
 
             String toastMsg = "";
             Bundle bundle = msg.getData();

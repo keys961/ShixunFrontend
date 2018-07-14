@@ -5,6 +5,8 @@ package godshi.edu.cn.micropayment.entity;
  */
 public class UserFavorProduct
 {
+    private int id;
+
     private String username;
 
     private long productId;
@@ -14,6 +16,16 @@ public class UserFavorProduct
     private double price;
 
     private String typeName;
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
 
     public String getUsername()
     {

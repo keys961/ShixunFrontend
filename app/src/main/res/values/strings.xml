@@ -36,12 +36,25 @@
     <string name="bank_name">银行名称</string>
     <string name="confirm_remove">确认移除</string>
     <string name="title_activity_confirm_pay">确认支付</string>
-    <string name="confirm_pay">确认支付</string>
     <string name="card_password_hint">请输入银行卡密码</string>
     <string name="title_activity_order">生成订单</string>
     <string name="aks">一键购买</string>
-    <string name="title_activity_akshome">AKSHomeActivity</string>
+    <string name="title_activity_akshome">一键购买中心</string>
     <string name="check_all_product">查看全部商品</string>
     <string name="card_num_t">银行卡号：</string>
     <string name="bank_name_t">银行名称：</string>
+    <string name="akscenter">您收藏的商品</string>
+    <string name="all_product">所有商品列表</string>
+    <string name="check_transaction_history">查看交易记录</string>
+    <string name="title_activity_transaction_list">交易记录</string>
+    <string name="generate_order">生成订单</string>
+    <string name="submit_order">提交订单</string>
+    <string name="single_price">单价(￥)&#160;</string>
+    <string name="product_name">商品名称</string>
+    <string name="product_type">商品类别</string>
+    <string name="address">送货地址</string>
+    <string name="phone_number">联系方式</string>
+    <string name="quantity">商品数量</string>
+    <string name="cancel">取消</string>
+    <string name="confirm_pay">确认支付</string>
 </resources>
