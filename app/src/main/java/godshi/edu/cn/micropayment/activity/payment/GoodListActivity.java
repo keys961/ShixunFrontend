@@ -6,7 +6,8 @@ import android.app.Activity;
 import godshi.edu.cn.micropayment.R;
 
 /**
- * GoodListActivity - choose an item -> OrderActivity -> ConfirmPayActivity
+ * GoodListActivity(Show list) -choose an item-> OrderActivity -> ConfirmPayActivity
+ * GoodListActivity - User add list button to add a good
  */
 public class GoodListActivity extends Activity
 {

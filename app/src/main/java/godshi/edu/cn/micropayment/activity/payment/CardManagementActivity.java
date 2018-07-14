@@ -36,7 +36,7 @@ public class CardManagementActivity extends Activity
 {
     private User user;
 
-    private ExecutorService threadPool = Executors.newCachedThreadPool();
+    private ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
     @SuppressLint("HandlerLeak")
     private Handler getCardsHandler = new Handler()
@@ -54,7 +54,7 @@ public class CardManagementActivity extends Activity
             String message = bundle.getString(MessageKeyConstant.BODY);
             Log.i("status", Boolean.toString(status));
             Log.i("message", message); // body
-            LoadingUtils.cancel();
+            //LoadingUtils.cancel();
             if(!status)
             {
                 // Login failed
@@ -89,7 +89,7 @@ public class CardManagementActivity extends Activity
                             new int[]{R.id.card_item_title, R.id.card_item_info, R.id.card_item_img});
                     ListView listView = findViewById(R.id.list_cardmanagement_cards);
                     listView.setAdapter(adapter);
-                    LoadingUtils.cancel();
+                    //LoadingUtils.cancel();
                     showToastMessage(toastMsg);
                     return;
                 }
@@ -149,8 +149,8 @@ public class CardManagementActivity extends Activity
         ListView listView = findViewById(R.id.list_cardmanagement_cards);
         listView.setOnItemClickListener((adapterView, view, i, l) ->
         {
-            TextView bankNameView = view.findViewById(R.id.card_item_title);
-            TextView cardNumView = view.findViewById(R.id.card_item_info);
+            TextView bankNameView = view.findViewById(R.id.card_item_info);
+            TextView cardNumView = view.findViewById(R.id.card_item_title);
 
             String bankName = bankNameView.getText().toString();
             String cardNumber = cardNumView.getText().toString();
@@ -170,7 +170,7 @@ public class CardManagementActivity extends Activity
         @Override
         public void run()
         {
-            LoadingUtils.show(CardManagementActivity.this);
+           // LoadingUtils.show(CardManagementActivity.this);
             Message message = HttpUtils.doGet(ApiConstant.API_GET_ALL_CARDS, new HashMap<>());
             getCardsHandler.sendMessage(message);
         }

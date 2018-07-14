@@ -113,7 +113,7 @@ public class IndexActivity extends Activity
         LinearLayout linearLayout = findViewById(R.id.btn_index_get_good_list);
         linearLayout.setOnClickListener(view ->
             {
-                Intent intent = new Intent(IndexActivity.this, GoodListActivity.class);
+                Intent intent = new Intent(IndexActivity.this, AKSHomeActivity.class);
                 intent.putExtra("username", user.getUsername());
                 intent.putExtra("password", user.getPassword());
                 startActivity(intent);

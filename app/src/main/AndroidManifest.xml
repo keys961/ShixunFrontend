@@ -58,7 +58,10 @@
             android:label="@string/title_activity_confirm_pay" />
         <activity
             android:name=".activity.payment.OrderActivity"
-            android:label="@string/title_activity_order"></activity>
+            android:label="@string/title_activity_order" />
+        <activity
+            android:name=".activity.payment.AKSHomeActivity"
+            android:label="@string/title_activity_akshome" />
     </application>
 
 </manifest>

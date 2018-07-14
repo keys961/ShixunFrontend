@@ -37,13 +37,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/card_number"
-                android:textSize="16sp" />
+                android:text="@string/card_num_t"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:id="@+id/text_removecard_cardnum"
                 android:layout_weight="1" />
         </LinearLayout>
@@ -56,13 +56,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/bank_name"
-                android:textSize="16sp" />
+                android:text="@string/bank_name_t"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:id="@+id/text_removecard_bankname"
                 android:layout_weight="1" />
         </LinearLayout>

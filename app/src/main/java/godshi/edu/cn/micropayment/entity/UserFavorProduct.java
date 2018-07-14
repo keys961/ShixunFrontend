@@ -1,8 +1,13 @@
 package godshi.edu.cn.micropayment.entity;
 
-public class Product
+/**
+ * Used for DAO
+ */
+public class UserFavorProduct
 {
-    private long id;
+    private String username;
+
+    private long productId;
 
     private String productName;
 
@@ -10,14 +15,24 @@ public class Product
 
     private String typeName;
 
-    public long getId()
+    public String getUsername()
     {
-        return id;
+        return username;
     }
 
-    public void setId(long id)
+    public void setUsername(String username)
     {
-        this.id = id;
+        this.username = username;
+    }
+
+    public long getProductId()
+    {
+        return productId;
+    }
+
+    public void setProductId(long productId)
+    {
+        this.productId = productId;
     }
 
     public String getProductName()
