@@ -46,4 +46,6 @@
     <string name="bank_name_t">银行名称：</string>
     <string name="akscenter">您收藏的商品</string>
     <string name="all_product">所有商品列表</string>
+    <string name="check_transaction_history">查看交易记录</string>
+    <string name="title_activity_transaction_list">交易记录</string>
 </resources>

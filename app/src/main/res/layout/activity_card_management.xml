@@ -33,17 +33,18 @@
             android:gravity="center"
             android:background="#ffffffff"
             android:weightSum="1"
-            android:id="@+id/linearLayout">
+            android:layout_marginBottom="@dimen/activity_vertical_margin">
+
             <Button
                 android:id="@+id/btn_cardmanagement_addcard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_weight="0.40"
                 android:background="#ff0099ff"
                 android:text="@string/add_new_card"
-                android:layout_weight="0.40"
                 android:textColor="#ffffffff"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
         </LinearLayout>
 
         <ListView

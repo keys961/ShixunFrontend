@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -16,7 +15,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import godshi.edu.cn.micropayment.R;
-import godshi.edu.cn.micropayment.activity.user.LoginActivity;
 import godshi.edu.cn.micropayment.activity.user.SettingActivity;
 import godshi.edu.cn.micropayment.entity.User;
 
@@ -41,6 +39,7 @@ public class IndexActivity extends Activity
         bindGoodListAction();
         bindCardManagementAction();
         bindSettingAction();
+        bindTransactionHistoryAction();
     }
 
     @Override
@@ -102,10 +101,23 @@ public class IndexActivity extends Activity
         linearLayout.setOnClickListener(view ->
             {
                 Intent intent = new Intent(IndexActivity.this, NFCPayActivity.class);
-                intent.putExtra("user", user.getUsername());
+                intent.putExtra("username", user.getUsername());
                 intent.putExtra("password", user.getPassword());
                 startActivity(intent);
             });
+    }
+
+    private void bindTransactionHistoryAction()
+    {
+        LinearLayout linearLayout = findViewById(R.id.btn_index_transaction_history);
+        linearLayout.setOnClickListener(view ->
+                {
+                    Intent intent = new Intent(this, TransactionListActivity.class);
+                    intent.putExtra("username", user.getUsername());
+                    intent.putExtra("password", user.getPassword());
+                    startActivity(intent);
+                }
+        );
     }
 
     private void bindGoodListAction()
@@ -143,6 +155,5 @@ public class IndexActivity extends Activity
             startActivityForResult(intent, 1);
         });
     }
-
 
 }
