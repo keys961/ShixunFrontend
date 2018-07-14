@@ -55,7 +55,7 @@ public class ChangePwdActivity extends Activity
             if(!status)
             {
                 // Login failed
-                toastMsg = "修改成功！\n失败消息: " + (message == null ? "未知" : message);
+                toastMsg = "修改失败！\n失败消息: " + (message == null ? "未知" : message);
                 showToastMessage(toastMsg);
                 return;
             }
@@ -63,7 +63,7 @@ public class ChangePwdActivity extends Activity
             try
             {
                 body = new JSONObject(message);
-                if(body.getBoolean("status"))
+                if("success".equals(body.getString("status")))
                 {
                     toastMsg = "修改成功！";
                     showToastMessage(toastMsg);

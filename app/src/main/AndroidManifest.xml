@@ -46,7 +46,22 @@
             android:label="@string/title_activity_setting" />
         <activity
             android:name=".activity.user.ChangePwdActivity"
-            android:label="@string/title_activity_change_pwd"></activity>
+            android:label="@string/title_activity_change_pwd" />
+        <activity
+            android:name=".activity.payment.AddCardActivity"
+            android:label="@string/title_activity_add_card" />
+        <activity
+            android:name=".activity.payment.RemoveCardActivity"
+            android:label="@string/title_activity_remove_card" />
+        <activity
+            android:name=".activity.payment.ConfirmPayActivity"
+            android:label="@string/title_activity_confirm_pay" />
+        <activity
+            android:name=".activity.payment.OrderActivity"
+            android:label="@string/title_activity_order" />
+        <activity
+            android:name=".activity.payment.AKSHomeActivity"
+            android:label="@string/title_activity_akshome" />
     </application>
 
 </manifest>

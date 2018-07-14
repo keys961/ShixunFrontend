@@ -74,13 +74,13 @@
                     android:layout_height="80dp"
                     android:layout_width="80dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/goodlist"
+                    android:src="@drawable/aks"
                     android:layout_gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:text="@string/get_good_list"
+                    android:text="@string/aks"
                     android:textSize="20sp"
                     android:textColor="#FF0099FF"
                     android:layout_gravity="center_horizontal" />
@@ -110,12 +110,12 @@
             android:id="@+id/btn_index_manage_card">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="225dp"
                 android:layout_height="match_parent"
-                android:text="@string/manage_card"
+                android:layout_weight="0.22"
                 android:gravity="center_vertical"
-                android:textSize="20sp"
-                android:layout_weight="0.22" />
+                android:text="@string/manage_card"
+                android:textSize="20sp" />
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -139,13 +139,14 @@
             android:id="@+id/btn_index_setting"
             android:paddingLeft="40dp"
             android:paddingRight="40dp">
+
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="224dp"
                 android:layout_height="match_parent"
-                android:text="@string/settings"
+                android:layout_weight="0.22"
                 android:gravity="center_vertical"
-                android:textSize="20sp"
-                android:layout_weight="0.22" />
+                android:text="@string/settings"
+                android:textSize="20sp" />
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"

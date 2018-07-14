@@ -5,9 +5,7 @@ public class MessageKeyConstant
     // Status code
     public static final String STATUS = "status";
 
-    // Header
-    public static final String HEADER = "header";
-
     // Body
     public static final String BODY = "body";
+    public static final String PAYLOAD = "payload";
 }

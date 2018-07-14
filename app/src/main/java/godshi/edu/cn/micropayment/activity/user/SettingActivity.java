@@ -17,6 +17,7 @@ import java.io.IOException;
 import godshi.edu.cn.micropayment.R;
 import godshi.edu.cn.micropayment.activity.payment.IndexActivity;
 import godshi.edu.cn.micropayment.entity.User;
+import godshi.edu.cn.micropayment.util.HttpUtils;
 
 public class SettingActivity extends Activity
 {
@@ -75,6 +76,7 @@ public class SettingActivity extends Activity
         linearLayout.setOnClickListener(view ->
             {
                 clearAccountInfo();
+                HttpUtils.clearSession();
                 Toast.makeText(SettingActivity.this, "登出成功！", Toast.LENGTH_SHORT)
                         .show();
                 Intent intent = new Intent(SettingActivity.this, LoginActivity.class);

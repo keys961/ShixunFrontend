@@ -8,21 +8,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.HttpStatus;
+import cz.msebera.android.httpclient.client.CookieStore;
 import cz.msebera.android.httpclient.client.config.RequestConfig;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.impl.client.BasicCookieStore;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import cz.msebera.android.httpclient.params.BasicHttpParams;
 import cz.msebera.android.httpclient.params.CoreConnectionPNames;
@@ -37,6 +34,7 @@ public class HttpUtils
             .setSocketTimeout(10500) // 10.5s transfer timeout
             .build();
 
+    private static AtomicReference<CookieStore> session = new AtomicReference<>(null);
 
     public static Message doPost(String url, Map<String, String> params)
     {
@@ -47,6 +45,8 @@ public class HttpUtils
         HttpPost post = new HttpPost(url);
         HttpEntity entity = null;
         HttpResponse response = null;
+        if(session.get() != null)
+            client.setCookieStore(session.get());
         try
         {
             JSONObject jsonObject = new JSONObject();
@@ -54,7 +54,7 @@ public class HttpUtils
                 jsonObject.put(key, params.get(key));
 
             entity = new StringEntity(jsonObject.toString(), "utf-8");
-            post.setHeader("Content-Type", "application/json; charset=utf-8");
+            post.setHeader("Content-Type", "application/json");
             post.setEntity(entity);
             post.setConfig(REQUEST_CONFIG);
             response = client.execute(post);
@@ -66,6 +66,8 @@ public class HttpUtils
             else
             {
                 Log.i("info", "request succeed");
+                if(!client.getCookieStore().getCookies().isEmpty())
+                    session.getAndSet(client.getCookieStore());
                 bundle.putBoolean(MessageKeyConstant.STATUS, true);
             }
 
@@ -85,7 +87,6 @@ public class HttpUtils
         {
             client.close();
         }
-
         message.setData(bundle);
         return message;
     }
@@ -99,6 +100,8 @@ public class HttpUtils
         HttpGet get = new HttpGet(url);
         HttpParams httpParams = null;
         HttpResponse response = null;
+        if(session.get() != null)
+            client.setCookieStore(session.get());
         try
         {
             httpParams = new BasicHttpParams();
@@ -115,6 +118,8 @@ public class HttpUtils
             else
             {
                 Log.i("info", "request succeed");
+                if(!client.getCookieStore().getCookies().isEmpty())
+                    session.getAndSet(client.getCookieStore());
                 bundle.putBoolean(MessageKeyConstant.STATUS, true);
             }
             if(response != null && response.getEntity() != null)
@@ -136,5 +141,10 @@ public class HttpUtils
 
         message.setData(bundle);
         return message;
+    }
+
+    public static void clearSession()
+    {
+        session = new AtomicReference<>(null);
     }
 }

@@ -5,6 +5,9 @@ import android.app.Activity;
 
 import godshi.edu.cn.micropayment.R;
 
+/**
+ * NFCPayActivity -> ConfirmPayActivity (auto generate order)
+ */
 public class NFCPayActivity extends Activity
 {
 

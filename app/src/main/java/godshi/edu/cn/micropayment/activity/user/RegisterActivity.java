@@ -64,7 +64,7 @@ public class RegisterActivity extends Activity
             try
             {
                 body = new JSONObject(message);
-                if(body.getBoolean("status"))
+                if("success".equals(body.getString("status")))
                 {
                     toastMsg = "注册成功！返回登陆页面！";
                     showToastMessage(toastMsg);
@@ -155,6 +155,7 @@ public class RegisterActivity extends Activity
             Map<String, String> params = new HashMap<>();
             params.put("username", username);
             params.put("password", password);
+            params.put("name", username);
             Message message = HttpUtils.doPost(ApiConstant.API_REGISTER, params);
             message.getData().putString("username", username);
             message.getData().putString("password", password);

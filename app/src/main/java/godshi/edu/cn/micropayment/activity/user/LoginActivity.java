@@ -69,7 +69,7 @@ public class LoginActivity extends Activity
             try
             {
                 body = new JSONObject(message);
-                if(body.getBoolean("status"))
+                if("success".equals(body.getString("status")))
                 {
                     toastMsg = "登陆成功！";
                     showToastMessage(toastMsg);
