@@ -108,6 +108,8 @@ public class AKSHomeActivity extends Activity
             intent.putExtra("productId", productId);
             intent.putExtra("typeName", product.getTypeName());
             intent.putExtra("price", product.getPrice());
+            intent.putExtra("type", "AKS");
+            intent.putExtra("username", username);
 
             startActivity(intent);
         });
