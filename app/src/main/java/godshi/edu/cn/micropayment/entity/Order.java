@@ -1,18 +1,36 @@
 package godshi.edu.cn.micropayment.entity;
 
-public class Order
-{
-    private long productId;
+import android.os.Parcelable;
 
-    private String payPassword;
+import java.io.Serializable;
+
+public class Order implements Serializable
+{
+    private static final long serialVersionUID = 1000000L;
+
+    private Product product;
+
+    private String username;
+
+    private String payPassword = null;
 
     private int quantity;
 
-    private String address;
+    private String address = "";
 
-    private String phoneNumber;
+    private String phoneNumber = "";
 
     private String type; // AKS or NFC
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
 
     public String getAddress()
     {
@@ -54,14 +72,14 @@ public class Order
         this.quantity = quantity;
     }
 
-    public long getProductId()
+    public Product getProduct()
     {
-        return productId;
+        return product;
     }
 
-    public void setProductId(long productId)
+    public void setProduct(Product product)
     {
-        this.productId = productId;
+        this.product = product;
     }
 
     public String getPayPassword()

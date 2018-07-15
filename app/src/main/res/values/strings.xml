@@ -57,4 +57,6 @@
     <string name="quantity">商品数量</string>
     <string name="cancel">取消</string>
     <string name="confirm_pay">确认支付</string>
+    <string name="one">1</string>
+    <string name="total_price">总价(￥)&#160;</string>
 </resources>

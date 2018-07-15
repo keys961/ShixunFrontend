@@ -190,6 +190,8 @@ public class GoodListActivity extends Activity
             intent.putExtra("productId", productId);
             intent.putExtra("typeName", typeName);
             intent.putExtra("price", price);
+            intent.putExtra("type", "AKS");
+            intent.putExtra("username", getIntent().getStringExtra("username"));
 
             startActivity(intent);
         });

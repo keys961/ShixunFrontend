@@ -1,7 +1,11 @@
 package godshi.edu.cn.micropayment.entity;
 
-public class Product
+import java.io.Serializable;
+
+public class Product implements Serializable
 {
+    private static final long serialVersionUID = 1000001L;
+    // Product id
     private long id;
 
     private String productName;
