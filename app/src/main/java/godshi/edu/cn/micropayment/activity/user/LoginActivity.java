@@ -22,10 +22,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import cz.msebera.android.httpclient.util.EncodingUtils;
 import godshi.edu.cn.micropayment.R;
@@ -83,7 +85,7 @@ public class LoginActivity extends Activity
             }
             catch (JSONException e)
             {
-                Log.e("error", e.getMessage());
+                Log.e("error", e.getMessage() == null ? "" : e.getMessage());
             }
             // false
             // Login failed
@@ -175,9 +177,27 @@ public class LoginActivity extends Activity
                 Future<Boolean> result = threadPool.submit(new LoginCallable(username, password));
                 return result.get(21000, TimeUnit.MILLISECONDS);
             }
-            catch (Exception e)
+            catch (JSONException e)
             {
-                Log.i("error ", e.getMessage());
+                Log.e("error", "Parsing json failed.");
+                return false;
+            }
+            catch (InterruptedException e)
+            {
+                Log.e("error", "fetched result interrupted.");
+                LoadingUtils.cancel();
+                return false;
+            }
+            catch (ExecutionException e)
+            {
+                Log.e("error", "fetched result execution failed.");
+                LoadingUtils.cancel();
+                return false;
+            }
+            catch (TimeoutException e)
+            {
+                Log.e("error", "connection timeout");
+                LoadingUtils.cancel();
                 return false;
             }
         }

@@ -59,4 +59,8 @@
     <string name="confirm_pay">确认支付</string>
     <string name="one">1</string>
     <string name="total_price">总价(￥)&#160;</string>
+    <string name="nfc_pay_t">NFC付款</string>
+    <string name="notice_nfc">请靠近收款设备</string>
+    <string name="buy">购买: </string>
+    <string name="transaction_history">交易记录</string>
 </resources>

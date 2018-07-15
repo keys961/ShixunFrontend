@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -195,18 +196,21 @@ public class ConfirmPayActivity extends Activity
     {
         String fileName = "order." + order.getUsername() + ".json"; //filename
         JSONObject body = null;
-
-        try(FileOutputStream out = openFileOutput(fileName, MODE_PRIVATE))
+        if(!StringUtils.isBlank(order.getAddress()) && !StringUtils.isBlank(order.getPhoneNumber()))
         {
-            body = new JSONObject();
-            body.put("address", order.getAddress());
-            body.put("phone", order.getPhoneNumber());
+            try (FileOutputStream out = openFileOutput(fileName, MODE_PRIVATE))
+            {
+                body = new JSONObject();
 
-            out.write(body.toString().getBytes());
-        }
-        catch (Exception e)
-        {
-            Log.e("error", e.getMessage());
+                body.put("address", order.getAddress());
+                body.put("phone", order.getPhoneNumber());
+
+                out.write(body.toString().getBytes());
+            }
+            catch (Exception e)
+            {
+                Log.e("error", e.getMessage());
+            }
         }
     }
 

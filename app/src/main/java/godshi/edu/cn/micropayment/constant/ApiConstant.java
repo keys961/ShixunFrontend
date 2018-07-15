@@ -21,4 +21,6 @@ public class ApiConstant
 
     public static final String API_BUY_PRODUCT = API_PREFIX + "/product/user/buy/";
 
+    public static final String API_TRANSACTION_HISTORY = API_PREFIX + "/product/user/transaction/list/";
+
 }
