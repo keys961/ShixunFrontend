@@ -1,6 +1,7 @@
 package godshi.edu.cn.micropayment.activity.payment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
@@ -31,6 +32,8 @@ public class OrderActivity extends Activity
     private Order order; // Order to submit
 
     private String username; // Username -> Used to store the most recent order info
+
+    private static final String AKS_FILE_NAME = "setting_aks";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -115,6 +118,9 @@ public class OrderActivity extends Activity
     private void bindConfirmAction()
     {
         Button button = findViewById(R.id.btn_order_submit);
+        SharedPreferences read = getSharedPreferences(AKS_FILE_NAME, MODE_PRIVATE);
+        boolean isSkipConfirm = read.getBoolean(AKS_FILE_NAME,false);
+
         button.setOnClickListener(view ->
         {
             order = new Order();
@@ -133,6 +139,10 @@ public class OrderActivity extends Activity
             intent.putExtra("order", order);
             startActivityForResult(intent, 1);
         });
+
+        if(isSkipConfirm){
+            button.performClick();
+        }
     }
 
     @Override

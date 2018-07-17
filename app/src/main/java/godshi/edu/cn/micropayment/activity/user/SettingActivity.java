@@ -1,6 +1,7 @@
 package godshi.edu.cn.micropayment.activity.user;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
@@ -11,9 +12,11 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import cz.msebera.android.httpclient.util.EncodingUtils;
 import godshi.edu.cn.micropayment.R;
 import godshi.edu.cn.micropayment.activity.payment.IndexActivity;
 import godshi.edu.cn.micropayment.entity.User;
@@ -22,6 +25,7 @@ import godshi.edu.cn.micropayment.util.HttpUtils;
 public class SettingActivity extends Activity
 {
     private static final String ACCOUNT_FILE_NAME = "account.json";
+    private static final String AKS_FILE_NAME = "setting_aks";
 
     private User user;
 
@@ -37,6 +41,20 @@ public class SettingActivity extends Activity
         TextView textView = findViewById(R.id.text_setting_header);
         textView.setText(String.format("账户: %s", user.getUsername()));
 
+        TextView aksTextView = findViewById(R.id.text_setting_enable_aks);
+        SharedPreferences read = getSharedPreferences(AKS_FILE_NAME, MODE_PRIVATE);
+        boolean isSkipConfirm = read.getBoolean(AKS_FILE_NAME,false);
+
+        if(!isSkipConfirm)
+        {
+            String text = getResources().getString(R.string.enable_aks);
+            aksTextView.setText(text);
+        }
+        else {
+            String text = getResources().getString(R.string.disable_aks);
+            aksTextView.setText(text);
+        }
+        bindEnableAKSAction();
         bindChangePwdAction();
         bindLogoutAction();
     }
@@ -54,6 +72,35 @@ public class SettingActivity extends Activity
         {
             Log.e("error", e.getMessage());
         }
+    }
+    private void bindEnableAKSAction()
+    {
+        LinearLayout linearLayout = findViewById(R.id.btn_setting_enable_aks);
+
+        linearLayout.setOnClickListener(view ->
+        {
+            String toastMsg = "";
+            TextView aksTextView = findViewById(R.id.text_setting_enable_aks);
+            SharedPreferences read = getSharedPreferences(AKS_FILE_NAME, MODE_PRIVATE);
+            boolean isSkipConfirm = read.getBoolean(AKS_FILE_NAME,false);
+
+            if(!isSkipConfirm)
+            {
+                toastMsg = "成功开启一键购物功能，订单确认流程将被跳过！";
+                showToastMessage(toastMsg);
+                String text = getResources().getString(R.string.disable_aks);
+                aksTextView.setText(text);
+            }
+            else {
+                toastMsg = "成功关闭一键购物功能，订单将需要经过确认！";
+                showToastMessage(toastMsg);
+                String text = getResources().getString(R.string.enable_aks);
+                aksTextView.setText(text);
+            }
+            SharedPreferences.Editor editor = getSharedPreferences(AKS_FILE_NAME, MODE_PRIVATE).edit();
+            editor.putBoolean( AKS_FILE_NAME, !isSkipConfirm);
+            editor.apply();
+        });
     }
 
     private void bindChangePwdAction()
@@ -86,4 +133,8 @@ public class SettingActivity extends Activity
             });
     }
 
+    private void showToastMessage(String message)
+    {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 }

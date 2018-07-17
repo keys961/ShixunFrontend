@@ -4,20 +4,48 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
         <TextView
+            android:id="@+id/text_setting_header"
             android:layout_width="fill_parent"
             android:layout_height="45dp"
-            android:text="@string/account_info"
-            android:textSize="25sp"
-            android:textColor="#ffffff"
-            android:id="@+id/text_setting_header"
+            android:layout_gravity="center_horizontal"
             android:background="#ff0099ff"
             android:gravity="center"
-            android:layout_gravity="center_horizontal" />
+            android:text="@string/account_info"
+            android:textColor="#ffffff"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_setting_enable_aks"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="15dp"
+        android:background="#ffffffff"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/text_setting_enable_aks"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/enable_aks"
+                android:textSize="22sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

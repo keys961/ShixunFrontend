@@ -1,6 +1,7 @@
 package godshi.edu.cn.micropayment.activity.payment;
 
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Looper;
@@ -41,15 +42,22 @@ public class ConfirmPayActivity extends Activity
 
     private ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
+    private static final String AKS_FILE_NAME = "setting_aks";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_pay);
+        SharedPreferences read = getSharedPreferences(AKS_FILE_NAME, MODE_PRIVATE);
+        boolean isSkipConfirm = read.getBoolean(AKS_FILE_NAME,false);
 
         initOrder();
         bindCancelAction();
         bindSubmitAction();
+
+        if(isSkipConfirm)
+            new SubmitOrderRunnable().run();
     }
 
     private void initOrder()

@@ -21,6 +21,8 @@
     <string name="title_activity_card_management">银行卡管理</string>
     <string name="title_activity_setting">设置</string>
     <string name="account_info">账户信息</string>
+    <string name="enable_aks">开启一键购买功能</string>
+    <string name="disable_aks">关闭一键购买功能</string>
     <string name="logout">退出登录</string>
     <string name="change_pwd">修改登录密码</string>
     <string name="title_activity_change_pwd">修改登录密码</string>
