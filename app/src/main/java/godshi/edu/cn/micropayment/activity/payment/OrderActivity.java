@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
@@ -126,8 +127,18 @@ public class OrderActivity extends Activity
             order = new Order();
             order.setProduct(productToBuy);//product
             EditText addressEdit = findViewById(R.id.edit_order_address);
+            String address = addressEdit.getText().toString();
             order.setAddress(addressEdit.getText().toString());//address
             EditText phoneEdit = findViewById(R.id.edit_order_phone_number);
+            String phoneNumber = phoneEdit.getText().toString();
+
+            if(StringUtils.isBlank(address) || StringUtils.isBlank(phoneNumber))
+            {
+                Toast.makeText(this, "请勿输入空地址或空手机号！",
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+
             order.setPhoneNumber(phoneEdit.getText().toString());//phone
             order.setType(getIntent().getStringExtra("type"));//type
             order.setUsername(username);//username
