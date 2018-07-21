@@ -3,7 +3,7 @@ package godshi.edu.cn.micropayment.constant;
 public class ApiConstant
 {
     //TODO: Finish url configurations
-    public static final String API_PREFIX = "http://10.180.90.14:8000";
+    public static final String API_PREFIX = "http://114.55.250.238:7999";
 
     public static final String API_LOGIN = API_PREFIX + "/account/login/";
 
