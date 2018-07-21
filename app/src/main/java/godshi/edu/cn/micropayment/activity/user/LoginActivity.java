@@ -63,7 +63,7 @@ public class LoginActivity extends Activity
             if(!status)
             {
                 // Login failed
-                toastMsg = "登陆失败！\n失败消息: " + (message == null ? "未知" : message);
+                toastMsg = "登录失败！\n失败消息: " + (message == null ? "未知" : message);
                 showToastMessage(toastMsg);
                 return;
             }
@@ -73,7 +73,7 @@ public class LoginActivity extends Activity
                 body = new JSONObject(message);
                 if("success".equals(body.getString("status")))
                 {
-                    toastMsg = "登陆成功！";
+                    toastMsg = "登录成功！";
                     showToastMessage(toastMsg);
                     Intent intent = new Intent(LoginActivity.this, IndexActivity.class);
                     intent.putExtra("username", bundle.getString("username"));
@@ -89,7 +89,7 @@ public class LoginActivity extends Activity
             }
             // false
             // Login failed
-            toastMsg = "登陆失败! 用户名或密码错误！";
+            toastMsg = "登录失败! 用户名或密码错误！";
             showToastMessage(toastMsg);
         }
     };

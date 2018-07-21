@@ -68,6 +68,9 @@ public class ChangePwdActivity extends Activity
                     toastMsg = "修改成功！";
                     showToastMessage(toastMsg);
                     updateAccountInfo(username, password);
+                    Intent intent = new Intent(ChangePwdActivity.this, LoginActivity.class);
+                    setResult(1); //used to finish parent activity
+                    startActivity(intent);
                     ChangePwdActivity.this.finish();
                     return;
                 }

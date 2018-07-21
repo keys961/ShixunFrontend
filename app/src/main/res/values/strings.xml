@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Shi付</string>
     <string name="slogan">轻松支付，简单生活</string>
-    <string name="title_activity_login">用户登陆</string>
-    <string name="login">登陆</string>
+    <string name="title_activity_login">用户登录</string>
+    <string name="login">登录</string>
     <string name="register">注册</string>
     <string name="username">用户名</string>
     <string name="password">密码&#160;&#160;&#160;&#160;</string>
